@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <style>
+        #imagePreview {
+            display: none;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Image for License Plate Recognition</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput">
+        <input type="submit" value="Upload">
+    </form>
+    <img id="imagePreview" src="#" alt="Image Preview">
+
+    <script>
+        document.getElementById("fileInput").addEventListener("change", function(event) {
+            var file = event.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var imagePreview = document.getElementById("imagePreview");
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = "block";
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
